@@ -1,11 +1,6 @@
 ﻿using Application.Abstractions;
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess.Repositories
 {
@@ -16,19 +11,25 @@ namespace DataAccess.Repositories
         {
             _ctx = ctx;
         }
-        public Task DeletePost(long postId)
+        public async Task DeletePost(long postId)
         {
-            throw new NotImplementedException();
+            var post = await _ctx.Post.FirstOrDefaultAsync(x => x.ID == postId);
+
+            if (post == null)
+                return;
+            _ctx.Post.Remove(post);
+
+            await _ctx.SaveChangesAsync();
         }
 
-        public Task<ICollection<Post>> GetAllPosts()
+        public async Task<ICollection<Post>> GetAllPosts()
         {
-            throw new NotImplementedException();
+            return await _ctx.Post.ToListAsync();
         }
 
         public async Task<Post> GetPostById(long postId)
         {
-            return await _ctx.Post.FirstOrDefaultAsync(x=>x.ID == postId);
+            return await _ctx.Post.FirstOrDefaultAsync(x => x.ID == postId);
         }
 
         public async Task<Post> InsertPost(Post entity)
@@ -37,12 +38,17 @@ namespace DataAccess.Repositories
             _ctx.Post.Add(entity);
             await _ctx.SaveChangesAsync();
             return entity;
-
         }
 
-        public Task<Post> UpdatePost(string? content, long postId)
+        public async Task<Post> UpdatePost(string? content, long postId)
         {
-            throw new NotImplementedException();
+            var post = await _ctx.Post.FirstOrDefaultAsync(x => x.ID == postId);
+            if (post == null)
+                throw new Exception("Error");
+            post.Content = content;
+            post.LastModified = DateTime.Now;
+            await _ctx.SaveChangesAsync();
+            return post;
         }
     }
 }
