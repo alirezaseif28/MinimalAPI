@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "e9ebc42c-fcde-4cd3-b084-91e1553a0759",
+		"name": "MinimalAPI",
+		"description": "StartFragment\n\nMinimalAPI With .NET\n\nThis file contain CQRS WITH MediatR And Clean Architecture API Service\n\nEndFragment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1433844"
+	},
+	"item": [
+		{
+			"name": "CreatePost",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\":\"This six post\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5178/api/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5178",
+					"path": [
+						"api",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllPost",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5178/api/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5178",
+					"path": [
+						"api",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPostById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5178/api/posts/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5178",
+					"path": [
+						"api",
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePost",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\" : \"This is One Post.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5178/api/posts/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5178",
+					"path": [
+						"api",
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePost",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5178/api/posts/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5178",
+					"path": [
+						"api",
+						"posts",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
