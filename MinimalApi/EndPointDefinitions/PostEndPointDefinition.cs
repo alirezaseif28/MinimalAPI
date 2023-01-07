@@ -3,7 +3,7 @@ using MediatR;
 using Application.Posts.Commands;
 using Application.Posts.Queries;
 using Domain.Models;
-
+using MinimalApi.Filters;
 
 namespace MinimalApi.EndPointDefinitions
 {
@@ -17,7 +17,7 @@ namespace MinimalApi.EndPointDefinitions
             #endregion
 
             #region CreatePost
-            posts.MapPost("/", CreatePost);
+            posts.MapPost("/", CreatePost).AddEndpointFilter<PostValidationFilter>();
             #endregion
 
             #region GetAllPosts
@@ -25,7 +25,7 @@ namespace MinimalApi.EndPointDefinitions
             #endregion
 
             #region UpdatePost
-            posts.MapPut("/{id}", UpdatePost);
+            posts.MapPut("/{id}", UpdatePost).AddEndpointFilter<PostValidationFilter>();
             #endregion
 
             #region DeletePost

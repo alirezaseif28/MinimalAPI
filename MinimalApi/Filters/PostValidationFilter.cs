@@ -1,10 +1,18 @@
-﻿namespace MinimalApi.Filters
+﻿using Domain.Models;
+using Microsoft.IdentityModel.Tokens;
+
+namespace MinimalApi.Filters
 {
     public class PostValidationFilter : IEndpointFilter
     {
-        public ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
+        public async ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
         {
-            throw new NotImplementedException();
+            var post = context.GetArgument<Post>(1);
+
+            if (string.IsNullOrEmpty(post.Content))
+                return await Task.FromResult(Results.BadRequest("Post not Valid"));
+
+            return await next(context);
         }
     }
 }
