@@ -10,25 +10,26 @@ namespace MinimalApi.EndPointDefinitions
     public class PostEndPointDefinition : IEndPointDefinition
     {
         public void RegisterEndPoint(WebApplication app)
-        {            
+        {
+            var posts = app.MapGroup("/api/posts");
             #region GetPostById
-            app.MapGet("/api/posts/{id}", GetPostById).WithName("GetPostById");
+            posts.MapGet("/{id}", GetPostById).WithName("GetPostById");
             #endregion
 
             #region CreatePost
-            app.MapPost("/api/posts", CreatePost);
+            posts.MapPost("/", CreatePost);
             #endregion
 
             #region GetAllPosts
-            app.MapGet("/api/posts", GetAllPosts);
+            posts.MapGet("/", GetAllPosts);
             #endregion
 
             #region UpdatePost
-            app.MapPut("/api/posts/{id}", UpdatePost);
+            posts.MapPut("/{id}", UpdatePost);
             #endregion
 
             #region DeletePost
-            app.MapDelete("/api/posts/{id}", DeletePost);
+            posts.MapDelete("/{id}", DeletePost);
             #endregion
 
         }
